@@ -23,13 +23,25 @@ Que fait exactement l'instruction préprocesseur `#include` et pourquoi permet-e
 > Elle permet d'include le namespace
 
 4. Compilez le programme de l'exercice en ne linkant que le fichier-objet associé à `main.cpp` (c'est-à-dire en oubliant `utils.cpp`).  
-Quelle est l'erreur qui s'affiche ?    
+Quelle est l'erreur qui s'affiche ?
+```
+/usr/bin/ld : /tmp/ccMUe9Go.o : dans la fonction « main » :
+main.cpp:(.text+0x5) : référence indéfinie vers « print_hello() »
+collect2: error: ld returned 1 exit status
+```
+
 En quoi est-elle différente des erreurs de la question précédente ?  
 Expliquez ce qu'elle signifie exactement.
 
 5. Décommentez maintenant les instructions commentées des fichiers [main.cpp](ex3/main.cpp) et [utils.hpp](ex3/utils.hpp).  
 Compilez maintenant le programme complet (avec les modules main et utils).  
 Quelle est l'erreur qui s'affiche ? S'agit-il d'une erreur de build ou de link ?  
+```
+/usr/bin/ld : /tmp/ccJlB9a8.o : dans la fonction « print_bye() » :
+utils.cpp:(.text+0x0) : définitions multiples de « print_bye() »; /tmp/ccsZQoca.o:main.cpp:(.text+0x0) : défini pour la première fois ici
+collect2: error: ld returned 1 exit status
+```
+
 Pourquoi se produit-elle ?  
 Que faudrait-il faire pour la résoudre ?
 
