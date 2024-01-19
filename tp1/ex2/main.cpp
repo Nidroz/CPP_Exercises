@@ -1,9 +1,7 @@
 #include <iostream>
-#include "person.hpp"
+#include "Person.hpp"
 
 int main(int argc, char **argv) {
-    Person person = {};
-    person.first_name = "Palluche";
-    person.surname = "La Faluche";
-    std::cout << "La personne s'appelle " << person.first_name << " " << person.surname << std::endl;
+    Person person = {"Palluche","La Faluche"};
+    std::cout << "La personne s'appelle " << person.get_firstname() << " " << person.get_surname() << std::endl;
 }
