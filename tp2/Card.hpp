@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ostream>
 
 class Card {
     public:
@@ -7,6 +8,8 @@ class Card {
         void print() const;
         bool operator==(Card other) const;
         bool operator<(Card other) const;
+        
+        friend std::ostream& operator<<(std::ostream& stream, Card card);
 
     private:
         unsigned int _value;

@@ -18,3 +18,8 @@ bool Card::operator==(Card other) const {
 bool Card::operator<(Card other) const {
     return _value < other._value;
 }
+
+std::ostream& operator<<(std::ostream& stream, Card card) {
+    stream << "(" << card._value << ", " << card._color << ")";
+    return stream;
+}
