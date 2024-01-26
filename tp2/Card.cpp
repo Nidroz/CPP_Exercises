@@ -8,7 +8,24 @@ Card::Card(unsigned int value, const std::string& color)
     {}
 
 void Card::print() const {
-    std::cout << _value << " de " << _color << std::endl;
+    switch (_value) {
+    case 11:
+        std::cout << "Valet de " << _color << std::endl;
+        break;
+    case 12:
+        std::cout << "Dame de " << _color << std::endl;
+        break;
+    case 13:
+        std::cout << "Roi de " << _color << std::endl;
+        break;
+    case 14:
+        std::cout << "As de " << _color << std::endl;
+        break;
+    
+    default:
+        std::cout << _value << " de " << _color << std::endl;
+        break;
+    }
 }
 
 bool Card::operator==(Card other) const {

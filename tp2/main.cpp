@@ -6,6 +6,9 @@
 #include "Player.hpp"
 
 int main(int argc, char const *argv[]) {
+    const Card c1 { 12, "Pique" };
+    c1.print();
+
     Player p1 { "Julien" };
     Player p2 { "Gerald" };
     Player::deal_all_cards(p1, p2);
