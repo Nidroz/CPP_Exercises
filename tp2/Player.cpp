@@ -37,8 +37,11 @@ Card Player::operator[](int index) {
 }
 
 bool Player::play(Player& p1, Player& p2) {
+    if (turn_number >= 15) { // end of game
+        return 1;
+    }
+
     std::cout << "Current turn of the game : " << turn_number << std::endl;
-    
     std::cout << "Player 1 have the card [" << p1._cards[turn_number] << "]" << " at turn " << turn_number << std::endl;
     std::cout << "Player 2 have the card [" << p2._cards[turn_number] << "]" << " at turn " << turn_number << std::endl;
 
@@ -51,8 +54,5 @@ bool Player::play(Player& p1, Player& p2) {
     }
     
     turn_number++;
-    if (turn_number == 15) {
-        return 1;
-    }
     return 0;
 }

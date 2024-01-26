@@ -22,7 +22,10 @@ class Player {
 };
 
 // Si vous ne précisez rien pour _cards, comment sera initialisé l'attribut ?
-// => à null
+// => à null (vector vide)
 
 // Pour _score, une valeur aléatoire si on ne précise rien, et qu'on utilise la variable
 // avant son initialisation.
+
+// A quoi sert la fonction std::this_thread::sleep_for ?
+// Elle sert à mettre en pause le programme pendant un certain temps (donné).
