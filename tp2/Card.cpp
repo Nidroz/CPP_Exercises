@@ -11,9 +11,10 @@ void Card::print() const {
     std::cout << _value << " de " << _color << std::endl;
 }
 
-int Card::operator==(Card other) const {
-    if (_value == other._value) {
-        return 1;
-    } 
-    return 0;
+bool Card::operator==(Card other) const {
+    return _value == other._value;
+}
+
+bool Card::operator<(Card other) const {
+    return _value < other._value;
 }
