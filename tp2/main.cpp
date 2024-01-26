@@ -26,6 +26,14 @@ int main(int argc, char const *argv[]) {
         std::cout << p1[i] << std::endl;
         std::cout << p2[i] << std::endl;
     }
+
+    bool playing = true;
+    while (playing) {
+        if ((Player::play(p1, p2) == 1)) {
+            std::cout << "PARTIE FINISHED ! " << std::endl;
+            playing = false;
+        }
+    }
     
     return 0;
 }
