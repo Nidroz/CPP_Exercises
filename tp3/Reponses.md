@@ -122,6 +122,7 @@ const std::string& concatenate(const std::string& str1, const std::string& str2)
 ## EXERCICE 3
 => Voir le sujet du `TP3.md`.
 
+### 1. Architecture
 - Architecture A:
 Trop complexe, imaginons que l'on ajoute ou supprime un élément, il faut s'assurer 
 que toutes les références soient correctes, et ainsi toujours maintenir la cohérence.
@@ -134,3 +135,23 @@ et donc plus facilement modifiable et vérifiable.
 
 - Architecture C:
 Pas lui, on peut avoir des dandling-references.
+
+=> Donc ici, la meilleure architecture possible sera la B.
+
+
+### 2. Compilation via CMake
+1. Ouvrez le fichier 3-hrsoft/CMakeLists.txt et regardez son contenu.
+Quels sont les exécutables présents dans ce projet ?
+>  Les exécutables présents sont:
+=> hrsoft-tests
+- `HRSoftTests.cpp`
+- `HRSoft/HRSoftSystem.hpp`
+- `HRSoft/Department.hpp`
+- `HRSoft/Employee.hpp`
+=> hrsoft
+- `HRSoftMain.cpp`
+- `HRSoft/HRSoftSystem.hpp`
+- `HRSoft/Department.hpp`
+- `HRSoft/Employee.hpp`
+
+
