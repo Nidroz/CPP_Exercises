@@ -159,6 +159,9 @@ Quels sont les exécutables présents dans ce projet ?
 
 
 ### 3. Implémentation du système
+1. Pour quelle raison le programme utilise-t-il des `std::list` plutôt que des `std::vector` pour stocker les départements et les employés ?
+> Le programme utilise des `std::list` plutôt que des `std::vector`, car `std::list` utilise 
+les références pour stocker les éléments, et donc les éléments sont plus facilement modifiables.
+Alors que `std::vector`, les éléments sont stockés dans un tableau, à savoir de manière contiguë.
 
-
-
+> Voir le code directement dans le dossier `3-hrsoft`.
