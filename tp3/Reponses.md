@@ -155,3 +155,10 @@ Quels sont les exécutables présents dans ce projet ?
 - `HRSoft/Employee.hpp`
 
 
+2. 3. 4. FAITS
+
+
+### 3. Implémentation du système
+
+
+
