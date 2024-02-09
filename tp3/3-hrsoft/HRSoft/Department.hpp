@@ -26,12 +26,13 @@ public:
         return employee;
     }
 
-    friend std::ostream& operator<<(std::ostream&, const Department&);
+    friend std::ostream &operator<<(std::ostream &, const Department &);
 
     void print_employees()
     {
         std::cout << "EMPLOYEES (of " << _name << " department) : " << std::endl;
-        for (const auto& employee : _employees) {
+        for (const auto &employee : _employees)
+        {
             std::cout << employee << std::endl;
         }
         std::cout << std::endl;
@@ -39,10 +40,32 @@ public:
 
     void remove_employee(Employee &employee)
     {
-        for (auto &employi : _employees) {
+        for (auto &employi : _employees)
+        {
             employi.remove_subordinate(employee);
         }
         _employees.remove(employee);
+    }
+
+    const std::string &get_name() const
+    {
+        return _name;
+    }
+
+    std::list<Employee> get_employees() const
+    {
+        return _employees;
+    }
+
+    void print_employees_by_department_name(const std::string &name)
+    {
+        if (name == _name)
+        {
+            for (auto employee : _employees)
+            {
+                std::cout << employee << std::endl;
+            }
+        }
     }
 
 private:
@@ -50,7 +73,7 @@ private:
     std::list<Employee> _employees;
 };
 
-inline std::ostream& operator<<(std::ostream& stream, const Department& department)
+inline std::ostream &operator<<(std::ostream &stream, const Department &department)
 {
     return stream << "DEPARTMENT : " << department._name;
 }

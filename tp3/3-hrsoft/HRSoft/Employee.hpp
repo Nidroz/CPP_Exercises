@@ -43,6 +43,22 @@ public:
         return _name == other._name && _salary == other._salary;
     }
 
+    const std::string &get_name() const
+    {
+        return _name;
+    }
+
+    void print_subordinates_by_employee_name(const std::string &name)
+    {
+        if (name == _name)
+        {
+            for (auto surbodinate : _subordinates)
+            {
+                std::cout << surbodinate << std::endl;
+            }
+        }
+    }
+
 private:
     std::string _name;
     unsigned int _salary = 0;

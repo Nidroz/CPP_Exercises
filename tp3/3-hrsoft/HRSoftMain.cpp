@@ -43,42 +43,42 @@ int main()
         switch (command)
         {
             case 'd':
-                std::cout << "Not implemented yet" << std::endl;
-                // system.add_department(parse_string(next_line));
+                system.add_department(parse_string(next_line));
                 break;
  
             case 'l':
-                std::cout << "Not implemented yet" << std::endl;
-                // system.print_all_departments();
+                system.print_all_departments();
                 break;
 
             case 'e':
-                std::cout << "Not implemented yet" << std::endl;
-                // if (auto* dpt = system.find_department(parse_string(next_line)))
-                // {
-                //     auto name = parse_string(next_line);
-                //     auto salary = parse_value(next_line);
-                //     auto* manager = system.find_employee(parse_string(next_line));
-                //     dpt->add_employee(name, salary, manager);
-                // }
+                if (auto* dpt = system.find_department(parse_string(next_line)))
+                {
+                    auto name = parse_string(next_line);
+                    auto salary = parse_value(next_line);
+                    std::cout << "Name: " << name << " | Salary: " << salary << std::endl;
+                    auto* manager = system.find_employee(parse_string(next_line));
+                    dpt->add_employee(name, salary, manager);
+                }
                 break;
 
             case 'k':
-                std::cout << "Not implemented yet" << std::endl;
-                // system.print_all_employees();
+                system.print_all_employees();
                 break;
 
             case 'f':
-                std::cout << "Not implemented yet" << std::endl;
-                // if (auto* employee = system.find_employee(parse_string(next_line)))
-                // {
-                //     system.remove_employee(*employee);
-                // }
+                if (auto* employee = system.find_employee(parse_string(next_line)))
+                {
+                    system.remove_employee(*employee);
+                }
                 break;
 
             case 'n':
                 std::cout << "Not implemented yet" << std::endl;
-                // ...
+                if (auto *dpt = system.find_department(parse_string(next_line))) {
+                    auto name = parse_string(next_line);
+                    std::cout << "Name: " << name << std::endl;
+                    dpt->print_employees_by_department_name(name);
+                }
                 break;
 
             case 'm':

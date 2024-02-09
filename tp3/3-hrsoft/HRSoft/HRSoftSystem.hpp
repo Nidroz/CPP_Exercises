@@ -36,10 +36,40 @@ public:
     void remove_employee(Employee &employee)
     {
         std::cout << "\nREMOVING THE EMPLOYEE: " << employee << std::endl;
-        for (auto &department : _departments) {
+        for (auto &department : _departments)
+        {
             department.remove_employee(employee);
-            //department.print_employees();
+            // department.print_employees();
         }
+    }
+
+    Department *find_department(const std::string &name)
+    {
+        for (auto &department : _departments)
+        {
+            if (department.get_name() == name)
+            {
+                std::cout << "FOUNDED !" << std::endl;
+                return &department;
+            }
+        }
+        // si employé (ou manager) pas trouver, on l'ajoute
+        return nullptr;
+    }
+
+    Employee *find_employee(const std::string &name)
+    {
+        for (auto &department : _departments)
+        {
+            for (auto &employee : department.get_employees())
+            {
+                if (employee.get_name() == name)
+                {
+                    return &employee;
+                }
+            }
+        }
+        return nullptr;
     }
 
 private:
