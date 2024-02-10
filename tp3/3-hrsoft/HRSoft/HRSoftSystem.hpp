@@ -47,9 +47,8 @@ public:
     {
         for (auto &department : _departments)
         {
-            if (department.get_name() == name)
-            {
-                std::cout << "FOUNDED !" << std::endl;
+            if (department.get_name() == name) {
+                std::cout << "FOUNDED DEPART !" << std::endl;
                 return &department;
             }
         }
@@ -70,6 +69,19 @@ public:
             }
         }
         return nullptr;
+    }
+
+    void print_all_managers() {
+        std::cout << "MANAGERS:" << std::endl;
+        for (auto &department : _departments)
+        {
+            for (auto &employee : department.get_employees())
+            {
+                if (employee.get_subordinates().size() != 0) {
+                    std::cout << "- " << employee.get_name() << std::endl;
+                }
+            }
+        }
     }
 
 private:

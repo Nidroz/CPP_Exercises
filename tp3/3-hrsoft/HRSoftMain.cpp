@@ -51,12 +51,16 @@ int main()
                 break;
 
             case 'e':
+                std::cout << parse_string(next_line) << std::endl;
                 if (auto* dpt = system.find_department(parse_string(next_line)))
                 {
                     auto name = parse_string(next_line);
                     auto salary = parse_value(next_line);
                     std::cout << "Name: " << name << " | Salary: " << salary << std::endl;
                     auto* manager = system.find_employee(parse_string(next_line));
+                    if (manager != nullptr) {
+                        std::cout << "Manager: " << manager->get_name() << std::endl;
+                    }
                     dpt->add_employee(name, salary, manager);
                 }
                 break;
@@ -73,7 +77,7 @@ int main()
                 break;
 
             case 'n':
-                std::cout << "Not implemented yet" << std::endl;
+                std::cout << "Not implemented yet " << system.find_department(parse_string(next_line)) << std::endl;
                 if (auto *dpt = system.find_department(parse_string(next_line))) {
                     auto name = parse_string(next_line);
                     std::cout << "Name: " << name << std::endl;
@@ -82,8 +86,14 @@ int main()
                 break;
 
             case 'm':
-                std::cout << "Not implemented yet" << std::endl;
-                // ...
+                system.print_all_managers();
+                {
+                const std::string manager = parse_string(next_line);
+                if (!manager.empty()) {
+                    std::cout << "Manager: " << manager << std::endl;
+                    
+                }
+                }
                 break;
 
             case 't':
@@ -92,6 +102,11 @@ int main()
                 break;
 
             case 's':
+                std::cout << "Not implemented yet" << std::endl;
+                // ...
+                break;
+
+            case 'r':
                 std::cout << "Not implemented yet" << std::endl;
                 // ...
                 break;
