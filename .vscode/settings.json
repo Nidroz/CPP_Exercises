@@ -77,6 +77,8 @@
         "span": "cpp",
         "stop_token": "cpp",
         "variant": "cpp",
-        "charconv": "cpp"
+        "charconv": "cpp",
+        "semaphore": "cpp",
+        "thread": "cpp"
     }
 }
