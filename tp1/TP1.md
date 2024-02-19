@@ -176,6 +176,7 @@ Que faudrait-il faire pour la résoudre ?
 6. Ajoutez le mot-clef `inline` devant la définition de la fonction `print_bye` dans [utils.hpp](ex3/utils.hpp). Que constatez-vous quand vous réessayez de compiler le programme ?  
 Selon-vous, quel est l'effet du mot-clef `inline` sur le linker ?
 
+
 ## Pour terminer
 
 Commitez vos modifications si ce n'est pas déjà fait.  
