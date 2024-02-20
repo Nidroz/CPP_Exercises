@@ -41,4 +41,4 @@
 // La fonction get_readonly_content() doit donner un accès en lecture et écriture à _content
 // ANSWER_3D get_modifiable_content() ANSWER_3E { return _content; }
 #define ANSWER_3D std::string&
-#define ANSWER_3E
+#define ANSWER_3E 

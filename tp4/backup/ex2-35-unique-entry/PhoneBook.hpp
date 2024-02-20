@@ -1,28 +1,32 @@
 #pragma once
 
-#include <vector>
+#include <iostream>
+#include <list>
 #include <algorithm>
-#include "../src/PhoneBookEntry.hpp"
-#include "../src/PhoneNumber.hpp"
+#include "PhoneBookEntry.hpp"
 
 class PhoneBook {
     public:
-        PhoneBook() {};
+        PhoneBook() {}
 
-        bool add_entry(PhoneBookEntry newPhoneEntry) {
-            _phonesBook.emplace_back(newPhoneEntry);
-            return std::find(_phonesBook.begin(), _phonesBook.end(), newPhoneEntry) != _phonesBook.end();
+        bool add_entry(const PhoneBookEntry& phoneEntry) {
+            bool contains = std::find(_phoneEntries.begin(), _phoneEntries.end(), phoneEntry) != _phoneEntries.end();
+            if (phoneEntry.get_number().is_valid() && !contains) {   
+                _phoneEntries.push_back(phoneEntry);
+                return true;
+            }
+            return false;
         }
 
-        const PhoneNumber *get_number(const std::string& name) const {
-            for (auto &phoneEntry : _phonesBook) {
+        const PhoneNumber* get_number(const std::string& name) const {
+            for (auto &phoneEntry : _phoneEntries) {
                 if (phoneEntry.get_name() == name) {
                     return &phoneEntry.get_number();
                 }
             }
             return nullptr;
         }
-
+    
     private:
-        std::vector<PhoneBookEntry> _phonesBook;
+        std::list<PhoneBookEntry> _phoneEntries;
 };

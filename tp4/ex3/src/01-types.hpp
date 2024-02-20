@@ -15,7 +15,8 @@
 
 // Si vous devez ajouter des directives d'inclusion pour faire compiler le test, vous pouvez dupliquer et 
 // décommenter la ligne ci-dessous.
-// #include <...>
+#include <string>
+#include <vector>
 
 // Question 1
 // stringify_integer convertit un entier en chaîne de caractères
@@ -26,7 +27,7 @@
 // Question 2
 // count_nb_elements permet de retourner le nombre d'éléments présents dans un tableau dynamique
 //  ANSWER_2A count_nb_elements(ANSWER_2B elements);
-#define ANSWER_2A int
+#define ANSWER_2A unsigned int
 #define ANSWER_2B const std::vector<int>&
 
 // Question 3
@@ -41,4 +42,4 @@
 // La fonction get_readonly_content() doit donner un accès en lecture et écriture à _content
 // ANSWER_3D get_modifiable_content() ANSWER_3E { return _content; }
 #define ANSWER_3D std::string&
-#define ANSWER_3E
+#define ANSWER_3E 

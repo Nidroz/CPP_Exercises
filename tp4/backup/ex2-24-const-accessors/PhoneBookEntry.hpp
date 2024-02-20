@@ -1,13 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include "PhoneNumber.hpp"
 
 class PhoneBookEntry {
     public:
-        PhoneBookEntry(const std::string& name, PhoneNumber PhoneNumber)
-        : _name { name },
-          _number { PhoneNumber }
+        PhoneBookEntry(const std::string& name, const PhoneNumber& phoneNumber)
+            : _name { name }
+            , _phoneNumber { phoneNumber }
         {}
 
         const std::string& get_name() const {
@@ -15,14 +16,14 @@ class PhoneBookEntry {
         }
 
         const PhoneNumber& get_number() const {
-            return _number;
+            return _phoneNumber;
         }
 
-        bool operator==(PhoneBookEntry other) const {
+        bool operator==(const PhoneBookEntry& other) const {
             return _name == other._name;
         }
 
     private:
         std::string _name;
-        PhoneNumber _number;
+        PhoneNumber _phoneNumber;
 };

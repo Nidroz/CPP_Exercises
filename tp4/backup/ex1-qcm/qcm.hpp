@@ -39,7 +39,7 @@
 
 // Si une fonction est définie dans deux fichiers-objets différents, l'erreur se produit lors de la phase de
 // build.
-#define ANSWER_9 false
+#define ANSWER_9 true
 
 // Le mot-clef "auto" sert à définir des variables sans préciser leur valeur initiale.
 #define ANSWER_10 false
@@ -48,4 +48,4 @@
 #define ANSWER_11 true
 
 // Il faut toujours penser à appeler "delete" sur les pointeurs observants.
-#define ANSWER_12 true
+#define ANSWER_12 false
