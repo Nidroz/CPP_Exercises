@@ -23,6 +23,12 @@ class CopyablePtr {
             other._object = nullptr;
         }
 
+        /*
+        ~CopyablePtr() {
+            delete _object;
+        }
+        */
+
         bool operator==(std::nullptr_t) const {
             return _object == nullptr;
         }
@@ -34,6 +40,13 @@ class CopyablePtr {
         CopyablePtr& operator=(std::nullptr_t) {
             delete _object;
             _object = nullptr;
+            return *this;
+        }
+
+        CopyablePtr& operator=(const CopyablePtr& other) {
+            if (this != &other) {
+                _object = other._object;
+            }
             return *this;
         }
 
