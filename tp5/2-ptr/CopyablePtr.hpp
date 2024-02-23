@@ -43,8 +43,9 @@ class CopyablePtr {
             return *this;
         }
 
-        CopyablePtr& operator=(const CopyablePtr& other) {
+        CopyablePtr& operator=(CopyablePtr other) {
             if (this != &other) {
+                delete _object;
                 _object = other._object;
             }
             return *this;
