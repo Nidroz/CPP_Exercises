@@ -13,7 +13,17 @@ class CopyablePtr {
             : _object {new Object { integer } }
         {}
 
-        bool operator==(std::nullptr_t) {
+        CopyablePtr(const CopyablePtr& other) // constructeur de copie
+            : _object { other == nullptr ? nullptr : new Object { *other._object }}
+        {}
+
+        CopyablePtr(CopyablePtr&& other)
+            : _object { std::move(other._object) }
+        {
+            other._object = nullptr;
+        }
+
+        bool operator==(std::nullptr_t) const {
             return _object == nullptr;
         }
 
