@@ -15,42 +15,47 @@
 
 a. `i` est un `int`  
 ```cpp
-4
-4 + i
-i
-i = 4
-i == 4
+4           => r-value
+4 + i       => r-value
+i           => l-value
+i = 4       => l-value
+i == 4      => r-value
 ```
 
 b. `vec` est un `std::vector<char>`
 ```cpp
-vec[5]
-vec
-vec.pop_back()
-std::vector { 'a', 'b', 'c' }
-vec.push_back('d')
-std::move(vec)
+vec[5]                          => l-value
+vec                             => l-value
+vec.pop_back()                  => rien (void)
+std::vector { 'a', 'b', 'c' }   => r-value
+vec.push_back('d')              => rien (void)
+std::move(vec)                  => l-value
 ```
 
 c. `ptr` est un pointeur de `int`
 ```cpp
-ptr + 3
-*(ptr + 3)
-*ptr + 3
+ptr + 3         => r-value
+*(ptr + 3)      => l-value
+*ptr + 3        => r-value
 ```
 
 d. `str` est une `std::string`
 ```cpp
-std::string { "aaaa" }
-str
-str + "aaaa"
-str += "aaaa"
-"aaaa"
+std::string { "aaaa" }  => r-value
+str                     => l-value
+str + "aaaa"            => r-value
+str += "aaaa"           => l-value
+"aaaa"                  => l-value (on a un truc en mémoire)
 ```
 
 2. Supposons que vous ayiez l'instruction : `Class inst { expr }`.  
 Quelles sont les deux conditions pour que le constructeur de copie soit appelé ?  
+> - Il faut qu'il soit appelé sur un objet déjà instancié et initialisé.
+> - Et à partir d'un objet du même type.
+
 Même question pour le constructeur de déplacement ?
+> - Lorsqu'il y a une copie, mais que l'on souhaite plutôt déplacer le contenu d'un objet A vers un autre (objet B).
+> - Si on n'utilisera plus l'objet A dans la suite du code.
 
 ## Exercice 2 - CopyablePtr (90 min)
 
