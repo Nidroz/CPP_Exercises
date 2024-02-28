@@ -25,11 +25,10 @@ public:
         other._object = nullptr;
     }
 
-    /*
-    ~CopyablePtr() {
-        delete _object;
+    ~CopyablePtr()
+    {
+        std::cout << "Destruction de la classe CopyablePtr" << std::endl;
     }
-    */
 
     bool operator==(std::nullptr_t) const { return _object == nullptr; }
 
@@ -42,13 +41,24 @@ public:
         return *this;
     }
 
-    CopyablePtr& operator=(CopyablePtr& other)
+    CopyablePtr& operator=(const CopyablePtr& other)
     {
         if (this != &other)
         {
             delete _object;
             CopyablePtr copy { other };
             _object = copy._object;
+        }
+        return *this;
+    }
+
+    CopyablePtr& operator=(CopyablePtr&& other)
+    {
+        if (this != &other)
+        {
+            delete _object;
+            CopyablePtr move { std::move(other) };
+            _object = move._object;
         }
         return *this;
     }
