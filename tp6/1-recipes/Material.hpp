@@ -22,6 +22,10 @@ class Material
         return stream << material._name; 
     }
 
+    const std::string& getName() {
+        return _name;
+    }
+
     private:
         std::string _name;
 };
