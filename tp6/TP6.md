@@ -34,6 +34,7 @@ cmake --build <chemin_vers_le_dossier_build> --target tp6-ex1
 2. Ouvrez le fichier [`ProgramData.hpp`](./1-recipes/ProgramData.hpp) : il contient la classe `ProgramData`, dont chacune des fonctions est appelée par l'une des commandes utilisateur.
 Ouvrez maintenant le fichier [`ProgramData.cpp`](./1-recipes/ProgramData.cpp).
 Pourquoi le programme ne fait rien ?
+> C'est normal, c'est à nous de le faire !
 
 ### B. Matériaux
 
@@ -45,8 +46,7 @@ Pour le restant de l'exercice, n'hésitez pas à ajouter les fonctions qui vous 
 4. Implémentez le contenu de la fonction `ProgramData::add_material`.
 Vous ajouterez un nouvel attribut à la classe `ProgramData` pour y stocker les matériaux.
 Individuellent, chacun d'entre eux sera alloué via `std::make_unique<Material>` et sera conservé sous forme de `std::unique_ptr<Material>`.
-5. Testez la commande `"m <name>"` plusieurs fois d'affilée, puis quitter le programme avec `"q"`, afin de vous assurez-vous via les logs du programme que chaque `Material` créé est détruit une seule et unique fois.
-6. Implémentez ensuite la fonction `ProgramData::get_materials`, qui remplit le tableau en paramètre avec la liste des matériaux présents dans l'inventaire.
+5. Testez la commande `"m <name>"` plus>t le tableau en paramètre avec la liste des matériaux présents dans l'inventaire.
 Vous pouvez utiliser la fonction-membre `get` de `unique_ptr` pour récupérer un pointeur-observant sur son contenu.
 7. (Bonus) Limitez les copies au maximum en **déplaçant** les objets que vous aurez besoin de stocker.
 
