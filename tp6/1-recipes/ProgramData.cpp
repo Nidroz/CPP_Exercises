@@ -16,7 +16,6 @@ void ProgramData::get_materials(std::vector<const Material*>& materials) const
 
 void ProgramData::register_recipe(std::vector<std::string> materials, std::vector<std::string> products)
 {
-    //auto recipe = std::make_unique<Recipe>(materials, products);
     auto recipe = Recipe { materials, products };
     _recipes.emplace_back(recipe);
     std::cout << "Recipe " << recipe << "has been registered" << std::endl;
@@ -39,5 +38,14 @@ void ProgramData::collect_doable_recipes(std::vector<const Recipe*>& recipes) co
 ProductionResult ProgramData::produce(size_t recipe_id)
 {
     ProductionResult result;
+    for (auto &recipe : _recipes) {
+        if (recipe.getId() == recipe_id) {
+            result.recipe = &recipe;
+            for (auto recipeMaterial : recipe.getMaterials()) {
+                
+            }
+        }
+    }
+    result.recipe = nullptr; // recette n'existe pas
     return result;
 }

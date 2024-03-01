@@ -18,6 +18,10 @@ class Recipe
             return _materials;
         }
 
+        size_t getId() const {
+            return _id;
+        }
+
     // Affiche l'identifiant et la formule d'une recette.
     friend std::ostream& operator<<(std::ostream& stream, const Recipe& recipe) { 
         stream << "(" << recipe._id << ") ";
