@@ -38,14 +38,30 @@ void ProgramData::collect_doable_recipes(std::vector<const Recipe*>& recipes) co
 ProductionResult ProgramData::produce(size_t recipe_id)
 {
     ProductionResult result;
+    bool recipeFound = false;
     for (auto &recipe : _recipes) {
         if (recipe.getId() == recipe_id) {
+            recipeFound = true;
+            std::cout << "Recipe found !" << std::endl;
             result.recipe = &recipe;
             for (auto recipeMaterial : recipe.getMaterials()) {
-                
+                bool found = false;
+                for (auto &material : _inventory) {
+                    if (material.get()->getName() == recipeMaterial) {
+                        found = true;
+                        // on consommme le materiau en mettant à nullptr
+                        material = nullptr;
+                        break;
+                    }
+                }
+                if (!found) {
+                    result.missing_materials.emplace_back(recipeMaterial);
+                }
             }
         }
     }
-    result.recipe = nullptr; // recette n'existe pas
+    if (!recipeFound) {
+        result.recipe = nullptr; // recette n'existe pas
+    }
     return result;
 }
