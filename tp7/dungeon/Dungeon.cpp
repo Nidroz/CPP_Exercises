@@ -100,8 +100,8 @@ void trigger_interactions(const std::vector<Entity*>& entities)
 {
     if (entities.size() > 1)
     {
-        // entities[0]->interact_with(*entities[1]);
-        // entities[1]->interact_with(*entities[0]);
+        entities[0]->interact_with(*entities[1]);
+        entities[1]->interact_with(*entities[0]);
     }
 }
 
