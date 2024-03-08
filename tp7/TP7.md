@@ -65,23 +65,37 @@ int main()
     Herbivore& bird_as_herb = bird;
     Carnivore& bird_as_carn = bird;
 
-    tiger.move();                  // I1
-    tiger_as_animal.move();        // I2
+                                       // type statique | type dynamique
+    tiger.move();                  // I1 Tiger          | Tiger
+    // Tiger::move
+    tiger_as_animal.move();        // I2 Animal         | Tiger
+    // Tiger::move
 
-    bird.move();                   // I3
-    bird_as_animal.move();         // I4
+    bird.move();                   // I3 Bird           | Bird
+    // Bird::move
+    bird_as_animal.move();         // I4 Animal         | Bird
+    // Animal::move => comme il y a const, pas virtuel
 
-    bird.can_eat_plant();          // I5
-    bird_as_herb.can_eat_plant();  // I6
-    bird_as_carn.can_eat_plant();  // I7
+    bird.can_eat_plant();          // I5 Bird           | Bird
+    // Bird::can_eat_plant
+    bird_as_herb.can_eat_plant();  // I6 Herbivore      | Bird
+    // Herbivore::can_eat_plant => pas virtuel, const
+    bird_as_carn.can_eat_plant();  // I7 Carnivore      | Bird
+    // Carnivore::can_eat_plant => pas déclaré virtuel
 
-    tiger.can_eat_plant();         // I8
-    tiger.can_eat_meat();          // I9
-    tiger_as_carn.can_eat_meat();  // I10
+    tiger.can_eat_plant();         // I8 Tiger          | Carnivore
+    // Tiger::can_eat_plant => const, pas virtuel
+    tiger.can_eat_meat();          // I9 Tiger          | Carnivore
+    // Tiger::can_eat_meat => const, pas virtuel
+    tiger_as_carn.can_eat_meat();  // I10 Carnivore     | Carnivore
+    // Carnivore::can_eat_meat
 
-    bird.type();                   // I11
-    bird_as_animal.type();         // I12
-    tiger_as_animal.type();        // I13
+    bird.type();                   // I11 Bird          | Bird
+    // Bird::type
+    bird_as_animal.type();         // I12 Animal        | Animal
+    // Animal::type
+    tiger_as_animal.type();        // I13 Animal        | Animal
+    // Animal::type
 
     return 0;
 }
