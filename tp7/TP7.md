@@ -125,8 +125,11 @@ cmake --build <chemin_vers_le_dossier_build> --target tp6-ex1
 
 2. Prenez connaissance du contenu des fichiers pré-existants et répondez aux questions suivantes :
 - Dans [Dungeon.cpp](dungeon/Dungeon.cpp), quel est le rôle de la fonction `display` ?
+> Son rôle est d'afficher la grille (en ASCII)
 - Dans [Dungeon.cpp](dungeon/Dungeon.cpp), quel est le rôle de la fonction `update` ?
+> Son rôle est de mettre à jour la grille (interatctions, retirer les entitées mortes, ...)
 - Quelle variable du `main` porte l'ownership des entitées ?
+> La variable du `main` qui porte l'ownership des entitées est `std::vector<std::unique_ptr<Entity>> all_entities`
 
 ### B. Personnage
 
