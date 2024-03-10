@@ -2,6 +2,7 @@
 
 #include "Entity.hpp"
 #include "Trap.hpp"
+#include <iostream>
 
 class Character : public Entity {
     public:
@@ -25,15 +26,22 @@ class Character : public Entity {
             const auto* trap = dynamic_cast<Trap*>(&entity);
             if (trap != nullptr) {
                 if (entity.get_x() == trap->get_x() && entity.get_y() == trap->get_y()) {
-                    times++;
+                    std::cout << "You stepped on a trap!" << std::endl;
+                    //times++;
                     if (times == 1) {
                         injured = true;
+                        dead = false;
                     } else if (times == 2) {
                         injured = false;
                         dead = true;
                     }
-                    
                 }
+            }
+        }
+
+        void update() override {
+            if (dead) {
+                return;
             }
         }
     
