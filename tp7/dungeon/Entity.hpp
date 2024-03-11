@@ -19,8 +19,10 @@ public:
 
     virtual void update() { random_move(_x, _y); }
 
-    void interact_with(Entity &entity) {
+    virtual void interact_with(Entity &entity) = 0;
 
+    virtual bool should_destroy() {
+        return false;
     }
 
 private:

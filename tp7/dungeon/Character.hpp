@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Potion.hpp"
 #include <iostream>
+#include "Logger.hpp"
 
 class Character : public Entity {
     public:
@@ -19,12 +20,12 @@ class Character : public Entity {
         }
 
         void interact_with(Entity &entity) {
-            const auto* trap = dynamic_cast<Trap*>(&entity);
-            const auto* potion = dynamic_cast<Potion*>(&entity);
+            auto* trap = dynamic_cast<Trap*>(&entity);
+            auto* potion = dynamic_cast<Potion*>(&entity);
             if (trap != nullptr) {
                 if (_times < 2) {
-                    std::cout << "You stepped on a trap!" << std::endl;
-                    //_times++;
+                    trap->consume();
+                    _times++;
                     if (_times == 1) {
                         _representation = 'o';
                     } else if (_times == 2) {
@@ -34,6 +35,7 @@ class Character : public Entity {
             } 
             else if (potion != nullptr) {
                 if (_times > 0) {
+                    potion->consume();
                     _times--;
                     if (_times == 1) {
                         _representation = 'o';
@@ -42,6 +44,17 @@ class Character : public Entity {
                     }
                 }
             }
+        }
+
+        bool should_destroy() override {
+            if (_times == 2 || _representation == '.') {
+                return true;
+            }
+            return false;
+        }
+
+        ~Character() {
+            logger << "A character died at position";
         }
     
     private:
