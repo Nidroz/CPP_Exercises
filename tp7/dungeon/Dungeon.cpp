@@ -110,7 +110,8 @@ void remove_dead_entities(std::vector<std::unique_ptr<Entity>>& entities)
     for (auto it = entities.begin(); it != entities.end();)
     {
         const auto should_remove = it->get()->should_destroy();
-        if (should_remove)
+        if (should_remove || it->get()->get_x() > 49 || it->get()->get_y() > 9
+            || it->get()->get_x() < 0 || it->get()->get_y() < 0)
         {
             it = entities.erase(it);
         }
@@ -207,8 +208,12 @@ int main()
     all_entities.push_back(std::make_unique<Trap>(width, height));
     all_entities.push_back(std::make_unique<Trap>(width, height));
     all_entities.push_back(std::make_unique<Trap>(width, height));
-    all_entities.push_back(std::make_unique<Trap>(width, height));
-    all_entities.push_back(std::make_unique<Trap>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
+    all_entities.push_back(std::make_unique<Potion>(width, height));
     all_entities.push_back(std::make_unique<Potion>(width, height));
 
     fill_grid(grid, all_entities);
