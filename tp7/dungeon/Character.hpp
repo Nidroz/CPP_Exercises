@@ -2,6 +2,8 @@
 
 #include "Entity.hpp"
 #include "Trap.hpp"
+#include "Potion.hpp"
+#include <iostream>
 
 class Character : public Entity {
     public:
@@ -11,34 +13,36 @@ class Character : public Entity {
             : Entity(x, y)
         {}
 
-        char get_representation() const override { 
-            if (injured) {
-                return 'o';
-            } else if (dead) {
-                return '.';
-            }
-        
-            return 'O'; 
+        char get_representation() const override {
+            return _representation;
         }
 
         void interact_with(Entity &entity) {
             const auto* trap = dynamic_cast<Trap*>(&entity);
+            const auto* potion = dynamic_cast<Potion*>(&entity);
             if (trap != nullptr) {
-                if (entity.get_x() == trap->get_x() && entity.get_y() == trap->get_y()) {
-                    times++;
-                    if (times == 1) {
-                        injured = true;
-                    } else if (times == 2) {
-                        injured = false;
-                        dead = true;
+                if (_times < 2) {
+                    _times++;
+                    if (_times == 1) {
+                        _representation = 'o';
+                    } else if (_times == 2) {
+                        _representation = '.';
                     }
-                    
+                }
+            } 
+            else if (potion != nullptr) {
+                if (_times > 0) {
+                    _times--;
+                    if (_times == 1) {
+                        _representation = 'o';
+                    } else if (_times == 0) {
+                        _representation = 'O';
+                    }
                 }
             }
         }
     
     private:
-        bool injured = false;
-        bool dead = false;
-        int times = 0;
+        int _times = 0;
+        char _representation = 'O';
 };
