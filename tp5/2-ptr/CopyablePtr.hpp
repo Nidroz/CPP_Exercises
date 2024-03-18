@@ -14,7 +14,7 @@ class CopyablePtr {
         {}
 
         CopyablePtr(const CopyablePtr& other)
-            : _object { other == nullptr ? nullptr : new Object(*other._object) }
+            : _object { other._object == nullptr ? nullptr : new Object(*other._object) }
         {}
 
         CopyablePtr(CopyablePtr&& other)
@@ -23,8 +23,12 @@ class CopyablePtr {
             other._object = nullptr;
         }
 
+        ~CopyablePtr() {
+            //delete _object;
+        }
 
-        bool operator==(std::nullptr_t other) const {
+
+        bool operator==(std::nullptr_t) const {
             return _object == nullptr;
         }
 
@@ -55,6 +59,14 @@ class CopyablePtr {
             }
             return *this;
         }
+
+        // Bonus F
+        /*
+        CopyablePtr& operator=(CopyablePtr other) {
+            std::swap(_object, other._object);
+            return *this;
+        }
+        */
 
     private:
         Object* _object = nullptr;

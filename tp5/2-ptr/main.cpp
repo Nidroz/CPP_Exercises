@@ -113,9 +113,9 @@ int main()
     std::cout << *ptr_0 << std::endl;
     std::cout << std::endl;
 
-    // // E. On vérifie que tous les Objects alloués encore en vie sont correctement détruits.
-    // print_expected("Object #2 [[ 5 ]] has been destroyed\n"
-    //                "Object #4 [[ 5 ]] has been destroyed");
+    // E. On vérifie que tous les Objects alloués encore en vie sont correctement détruits.
+    print_expected("Object #2 [[ 5 ]] has been destroyed\n"
+                   "Object #4 [[ 5 ]] has been destroyed");
 
     return 0;
 }
