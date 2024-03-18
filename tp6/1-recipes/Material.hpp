@@ -8,7 +8,7 @@ class Material
 {
     public:
         Material(const std::string& name)
-            : _name { name }
+            : _name { std::move(name) }
         {
             std::cout << _name << " was created" << std::endl;
         }

@@ -8,8 +8,8 @@ class Recipe
 {
     public:
         Recipe(const std::vector<std::string>& materials, const std::vector<std::string>& products) 
-            : _materials { materials }
-            , _products { products }
+            : _materials { std::move(materials) }
+            , _products { std::move(products) }
         {
             static size_t id = 1;
             _id = id++;
@@ -21,6 +21,10 @@ class Recipe
 
         const std::vector<std::string>& getMaterials() const {
             return _materials;
+        }
+
+        const std::vector<std::string>& getProducts() const {
+            return _products;
         }
 
     // Affiche l'identifiant et la formule d'une recette.

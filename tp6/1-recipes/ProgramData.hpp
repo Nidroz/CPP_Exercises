@@ -36,6 +36,8 @@ public:
     // Tente de réaliser la recette demandée.
     ProductionResult produce(size_t recipe_id);
 
+    void removeMaterialFromInventory(const std::string& materialToRemove);
+
 private:
     std::vector<std::unique_ptr<Material>> _inventory;
     std::vector<std::unique_ptr<Recipe>> _recipes;

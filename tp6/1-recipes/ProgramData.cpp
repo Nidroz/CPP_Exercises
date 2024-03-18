@@ -38,8 +38,51 @@ void ProgramData::collect_doable_recipes(std::vector<const Recipe*>& recipes) co
     }
 }
 
+void ProgramData::removeMaterialFromInventory(const std::string& materialToRemove) {
+    for (auto it = _inventory.begin(); it != _inventory.end(); it++) {
+        if (it->get()->getName() == materialToRemove) {
+            _inventory.erase(it);
+            break;
+        }
+    }
+}
+
 ProductionResult ProgramData::produce(size_t recipe_id)
 {
     ProductionResult result;
+    bool recipeFound = false;
+    for (const auto& recipe : _recipes) {
+        if (recipe.get()->getId() == recipe_id) {
+            recipeFound = true;
+            std::cout << "Recipe found ! " << recipe.get()->getId() << std::endl;
+            result.recipe = recipe.get();
+            for (const auto& recipeMaterial : recipe->getMaterials()) {
+                bool found = false;
+                int nbFound = 0;
+                for (auto &materialInventory : _inventory) {
+                    if (materialInventory.get()->getName() == recipeMaterial) {
+                        std::cout << "material found !" << recipeMaterial << std::endl;
+                        found = true;
+                        nbFound++;
+                        // consume le material
+                        removeMaterialFromInventory(materialInventory.get()->getName());
+                        std::cout << "mise à null !" << std::endl;
+                        break;
+                    }
+                }
+                if (!found) {
+                    std::cout << recipeMaterial << "pas trouvé !" << std::endl;
+                    result.missing_materials.emplace_back(recipeMaterial);
+                } else if (found && (nbFound == recipe->getMaterials().size())) {
+                    for (const auto& product : recipe.get()->getProducts()) {
+                        add_material(product);
+                    }
+                }
+            }
+        }
+    }
+    if (!recipeFound) { 
+        result.recipe = nullptr; 
+    }
     return result;
 }
