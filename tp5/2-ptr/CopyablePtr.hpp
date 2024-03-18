@@ -19,7 +19,9 @@ class CopyablePtr {
 
         CopyablePtr(CopyablePtr&& other)
             : _object { std::move(other._object) }
-        {}
+        {
+            other._object = nullptr;
+        }
 
 
         bool operator==(std::nullptr_t other) const {
@@ -41,6 +43,15 @@ class CopyablePtr {
                 delete _object;
                 CopyablePtr copy { other };
                 _object = copy._object;
+            }
+            return *this;
+        }
+
+        CopyablePtr& operator=(CopyablePtr&& other) {
+            if (this != &other) {
+                delete _object;
+                CopyablePtr move { std::move(other) };
+                _object = move._object;
             }
             return *this;
         }
