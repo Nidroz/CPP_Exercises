@@ -12,6 +12,8 @@ public:
         , _y { y }
     {}
 
+    virtual ~Entity() = default;
+
     int get_x() const { return _x; }
     int get_y() const { return _y; }
 
@@ -19,7 +21,11 @@ public:
 
     virtual void update() { random_move(_x, _y); }
 
-    virtual void interact_with(Entity &other) {}
+    virtual void interact_with(Entity &other) = 0;
+
+    virtual bool should_destroy() const {
+        return false;
+    }
 
 private:
     int _x = 0;

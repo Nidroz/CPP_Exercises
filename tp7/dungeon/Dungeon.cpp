@@ -109,7 +109,7 @@ void remove_dead_entities(std::vector<std::unique_ptr<Entity>>& entities)
 {
     for (auto it = entities.begin(); it != entities.end();)
     {
-        const auto should_remove = false; // <- modifiez cette condition
+        const auto should_remove = (*it)->should_destroy();
         if (should_remove)
         {
             it = entities.erase(it);

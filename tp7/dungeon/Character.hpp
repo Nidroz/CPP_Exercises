@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "Trap.hpp"
 #include "Potion.hpp"
+#include "Logger.hpp"
 
 class Character : public Entity {
     public:
@@ -23,15 +24,25 @@ class Character : public Entity {
         }
 
         void interact_with(Entity& other) override {
-            const auto* trap = dynamic_cast<Trap*>(&other);
+            auto* trap = dynamic_cast<Trap*>(&other);
             if (trap != nullptr) {
+                //trap->consume();
                 _lives == 0 ? _lives = 0 : _lives--;
             }
 
-            const auto* potion = dynamic_cast<Potion*>(&other);
+            auto* potion = dynamic_cast<Potion*>(&other);
             if (trap != nullptr) {
+                //potion->consume();
                 _lives == 2 ? _lives = 2 : _lives++;
             }
+        }
+
+        bool should_destroy() const override {
+            return _lives == 0;
+        }
+
+        ~Character() {
+            logger << "A character died at position (" << get_x() << ", " << get_y() << ")";
         }
 
     private:
