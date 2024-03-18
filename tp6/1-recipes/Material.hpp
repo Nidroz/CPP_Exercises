@@ -17,6 +17,10 @@ class Material
             std::cout << _name << " was destroyed" << std::endl;
         }
 
+        const std::string& getName() const {
+            return _name;
+        }
+
         // Affiche le nom d'un materiau.
         friend std::ostream& operator<<(std::ostream& stream, const Material& material) { 
             return stream << material._name; 
