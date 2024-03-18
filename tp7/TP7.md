@@ -65,23 +65,23 @@ int main()
     Herbivore& bird_as_herb = bird;
     Carnivore& bird_as_carn = bird;
 
-    tiger.move();                  // I1
-    tiger_as_animal.move();        // I2
+    tiger.move();                  // I1 Tiger::move (statique Tiger / dynamique Tiger)
+    tiger_as_animal.move();        // I2 Tiger::move car move est virtuelle (statique Animal / dynamique Tiger)
 
-    bird.move();                   // I3
-    bird_as_animal.move();         // I4
+    bird.move();                   // I3 Bird::move (statique Bird / dynamique Bird)
+    bird_as_animal.move();         // I4 Animal::move comme il y a const, pas virtuel (statique Animal / dynamique Bird)
 
-    bird.can_eat_plant();          // I5
-    bird_as_herb.can_eat_plant();  // I6
-    bird_as_carn.can_eat_plant();  // I7
+    bird.can_eat_plant();          // I5 Bird::can_eat_plant (statique Bird / dynamique Bird)
+    bird_as_herb.can_eat_plant();  // I6 Bird::can_eat_plant (virtuelle) (statique Herbivore / dynamique Bird)
+    bird_as_carn.can_eat_plant();  // I7 Carnivore::can_eat_plant (statique Carnivore / dynamique Bird)
 
-    tiger.can_eat_plant();         // I8
-    tiger.can_eat_meat();          // I9
-    tiger_as_carn.can_eat_meat();  // I10
+    tiger.can_eat_plant();         // I8 Carnivore::can_eat_plant (statique Tiger / dynamique Carnivore)
+    tiger.can_eat_meat();          // I9 Tiger::can_eat_meat (statique Tiger / dynamique Tiger)
+    tiger_as_carn.can_eat_meat();  // I10 Carnivore::can_eat_meat (statique Carnivore / dynamique Carnivore)
 
-    bird.type();                   // I11
-    bird_as_animal.type();         // I12
-    tiger_as_animal.type();        // I13
+    bird.type();                   // I11 Bird::type (statique Bird / dynamique Bird)
+    bird_as_animal.type();         // I12 Animal::type (pas virtuelle) (statique Animal / dynamique Bird)
+    tiger_as_animal.type();        // I13 Animal::type (pas virtuelle) (statique Animal / dynamique Tiger)
 
     return 0;
 }
