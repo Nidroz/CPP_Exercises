@@ -67,6 +67,9 @@
         "charconv": "cpp",
         "format": "cpp",
         "span": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "codecvt": "cpp",
+        "ranges": "cpp",
+        "__nullptr": "cpp"
     }
 }

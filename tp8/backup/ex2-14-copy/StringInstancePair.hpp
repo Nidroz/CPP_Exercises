@@ -13,8 +13,10 @@ class StringInstancePair {
 
         StringInstancePair(const StringInstancePair& other)
             : _str { other._str }
-            , _instanceCounter { new InstanceCounter(other.get_instance_counter()) }
+            , _instanceCounter { std::make_unique<InstanceCounter>(other.get_instance_counter()) }
         {}
+
+        StringInstancePair(StringInstancePair&& other) = default;
 
         const std::string& get_str() const {
             return _str;
@@ -23,7 +25,7 @@ class StringInstancePair {
         const InstanceCounter& get_instance_counter() const {
             return *_instanceCounter;
         }
-    
+        
     private:
         std::string _str;
         std::unique_ptr<InstanceCounter> _instanceCounter;
