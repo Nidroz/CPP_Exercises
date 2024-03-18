@@ -7,7 +7,7 @@
 class StringInstancePair {
     public:
         StringInstancePair(std::string str)
-            : _str { str }
+            : _str { std::move(str) }
             , _instanceCounter { std::make_unique<InstanceCounter>() }
         {}
 
