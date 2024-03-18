@@ -19,6 +19,8 @@ public:
 
     virtual void update() { random_move(_x, _y); }
 
+    virtual void interact_with(Entity &other) {}
+
 private:
     int _x = 0;
     int _y = 0;
