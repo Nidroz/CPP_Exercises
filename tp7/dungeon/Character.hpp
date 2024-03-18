@@ -26,13 +26,13 @@ class Character : public Entity {
         void interact_with(Entity& other) override {
             auto* trap = dynamic_cast<Trap*>(&other);
             if (trap != nullptr) {
-                //trap->consume();
+                trap->consume();
                 _lives == 0 ? _lives = 0 : _lives--;
             }
 
             auto* potion = dynamic_cast<Potion*>(&other);
             if (trap != nullptr) {
-                //potion->consume();
+                potion->consume();
                 _lives == 2 ? _lives = 2 : _lives++;
             }
         }
