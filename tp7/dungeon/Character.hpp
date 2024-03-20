@@ -31,7 +31,7 @@ class Character : public Entity {
             }
 
             auto* potion = dynamic_cast<Potion*>(&other);
-            if (trap != nullptr) {
+            if (potion != nullptr) {
                 potion->consume();
                 _lives == 2 ? _lives = 2 : _lives++;
             }
