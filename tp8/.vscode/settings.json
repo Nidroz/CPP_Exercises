@@ -63,6 +63,10 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "codecvt": "cpp",
+        "ranges": "cpp",
+        "cinttypes": "cpp",
+        "__nullptr": "cpp"
     }
 }
