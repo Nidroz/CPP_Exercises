@@ -50,14 +50,20 @@ void hit_monsters(std::map<std::string, Entities>& all_entities, int life_decrea
 
 void remove_dead_entities(std::map<std::string, Entities>& all_entities)
 {
-    // auto remove_if_dead = ...
-    // apply_on_entities_with_type(all_entities, "Monster", remove_if_dead);
-    // apply_on_entities_with_type(all_entities, "Human", remove_if_dead);
+    auto remove_if_dead = [](Entities& entities) { 
+        entities.remove_if([](const std::unique_ptr<Entity>& entity) { 
+            return entity->life <= 0;
+        });    
+    };
+    apply_on_entities_with_type(all_entities, "Monster", remove_if_dead);
+    apply_on_entities_with_type(all_entities, "Human", remove_if_dead);
 }
 
 void add_entity(std::map<std::string, Entities>& all_entities, const std::string& type, std::unique_ptr<Entity> entity)
 {
-    // apply_on_entities_with_type(all_entities, type, ...);
+    apply_on_entities_with_type(all_entities, type, [&entity](Entities& entities) {
+        entities.emplace_back(std::move(entity));
+    });
 }
 
 int main()
