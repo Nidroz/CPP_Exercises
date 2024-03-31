@@ -10,21 +10,44 @@
 
 1. Consulter la documentation des conteneurs spécifiés afin de renseigner les complexités en temps de chacune des opérations :
 
-| Conteneur     | Insertion (en tête / en fin) | Suppression (en tête / en fin) | Accès |
-|---------------|--------------|--------------|--------------|
-| array         |     N/A      |     N/A      |              |
-| vector        |              |              |              |
-| deque         |              |              |              |
-| forward_list  |              |              |              |
-| list          |              |              |              |
-| set           |              |              |              |
-| unordered_set |              |              |              |
+| Conteneur     | Insertion (en tête / en fin) | Suppression (en tête / en fin) | Accès | Invalidation d'itérateur |
+|---------------|--------------|--------------|--------------|--------------|
+| array         |     N/A      |     N/A      |     O(1)     |     N/A      |
+| vector        |Amortized O(1)|Amortized O(1)|     O(1)     | réallocation, insertion/suppression |
+| deque         |     O(1)     |     O(1)     |     O(1)     | ajout/suppression |
+| forward_list  |     O(1)     |     O(1)     |     O(n)     | seulement si on supprime l'élément associé |
+| list          |     O(1)     |     O(1)     |     O(n)     |              |
+| set           |  O(log(n))   |  O(log(n))   |  O(log(n))   |              |
+| unordered_set |     O(1)     |     O(1)     |     O(1)     |              |
+
+> Amortized O(1): O(1) et parfois O(n)
 
 2. Supposons que vous ayez récupéré un itérateur sur un élément d'un conteneur avec : `auto it = std::find(ctn.begin(), ctn.end(), element_to_find)`.  
 En fonction du type de conteneur, quelles sont les opérations susceptibles d'invalider cet itérateur ? Essayez d'être précis dans vos réponses.  
 Exemple : Si `ctn` est un `std::vector`, alors `it` peut être invalidé en cas de suppression d'un élément précédent `it` dans le conteneur.
 
+- Pour un `std::array`, il n'y a pas d'invalidation sur les itérateurs.
+- Pour un `std::vector`, il y a des invalidations sur les itérateurs, qui peuvent être: 
+   > dès que la fin change ou si sa capacité a été changée ou s'il y a eu une insertion ou delete qui a décalé mes valeurs.
+
+   ![Alt text](image.png)
+- Pour un `std::deque`, il y a des invalidations sur les itérateurs:
+   > lors de l'ajout et suppression
+- Pour un `std::forward_list`, il y a des invalidations sur les itérateurs:
+   > que lorsqu'on supprime l'élément associé
+- Pour un `std::list`, il y a des invalidations sur les itérateurs:
+   > même chose que `std::forwad_list`
+- Pour un `std::set`, il y a des invalidations sur les itérateurs:
+   > même chose que `std::forwad_list`
+- Pour un `std::unordered_set`, il y a des invalidations sur les itérateurs:
+   > même chose que `std::forwad_list`, mais en plus, en casde re-hash
+
+
+
 3. Quelle est la différence entre les fonctions `push_back` et `emplace_back` de la classe-template `std::vector` ?
+> `push_back` renvoie rien
+> `emplace_back` renvoie une référence
+L'un construit par copie ou déplacement (`push_back`) alors que l'autre construit directement où il va se trouver (`emplace_back`)
 
 ## Exercice 2 - Lambdas et algorithmes (40 min)
 
