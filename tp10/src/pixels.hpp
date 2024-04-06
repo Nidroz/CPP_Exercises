@@ -59,3 +59,28 @@ template<>
 RGBA convert(const Luma& value) {
     return convert<RGB, RGBA>(convert<Luma, RGB>(value));
 }
+
+RGBA operator+(const RGBA& lhs, const RGBA& rhs) {
+    return image_lib::mix_color(lhs.red, lhs.green, lhs.blue, lhs.alpha, rhs.red, rhs.green, rhs.blue, rhs.alpha);
+}
+
+RGB operator+(const RGB& lhs, const RGBA& rhs) {
+    return convert<RGB>(lhs + rhs);
+}
+
+RGB operator+(const Luma& lhs, const RGBA& rhs) {
+    return convert<RGB>(lhs + rhs);
+}
+
+RGBA operator+(const RGBA& lhs, const RGB& rhs) {
+    return convert<RGBA>(lhs + rhs);
+}
+
+RGB operator+(const RGB& lhs, const RGB& rhs) {
+    return convert<RGB>(lhs + rhs);
+}
+
+RGB operator+(const Luma& lhs, const RGB& rhs) {
+    return convert<RGB>(lhs + rhs);
+}
+
