@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     Point2d p2 = {3, 4};
     Content c1 = Content::Red;
     Content c2 = Content::Yellow;
-    std::unordered_map<Point2d, Content, Point2dHash, Point2dEqual> grid = {
+    std::unordered_map<Point2d, Content> grid = {
         {p1, c1},
         {p2, c2}
     };
