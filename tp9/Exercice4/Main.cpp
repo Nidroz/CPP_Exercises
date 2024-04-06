@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
 {
     Point3d p1 = {1, 2, 4};
     Point3d p2 = {3, 4, 6};
-    std::set<Point3d, Point3dCompare> coords;
+    std::set<Point3d> coords;
     coords.insert(p1);
     coords.insert(p2);
     std::cout << "grid[" << p1._x << ", " << p1._y << ", " << p1._z << "] = " 
