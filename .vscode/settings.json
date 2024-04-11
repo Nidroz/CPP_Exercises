@@ -88,6 +88,8 @@
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
         "complex": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "ranges": "cpp",
+        "__nullptr": "cpp"
     }
 }
