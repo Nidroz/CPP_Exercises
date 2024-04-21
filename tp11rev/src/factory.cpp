@@ -26,20 +26,20 @@ class Factory
 public:
     using Builder = std::function<std::unique_ptr<Entity>()>;
 
-    template <typename TDerivedEntity, typename... TArguments>
-    void register_entity(const std::string& identifiant, TArguments&&... args)
+    template <typename TDerivedEntity, typename... TArgs>
+    void register_entity(const std::string& identifiant, TArgs&&... args)
     {
         _builders.emplace(identifiant, [&args...]() -> std::unique_ptr<Entity> {
-            return std::make_unique<TDerivedEntity>(std::forward<TArguments>(args)...);
+            return std::make_unique<TDerivedEntity>(std::forward<TArgs>(args)...);
         });
     }
 
-    std::unique_ptr<Entity> build(const std::string& id) const {
-        auto it_build = _builders.find(id);
-        if (it_build != _builders.end()) {
-            return it_build->second();
+    std::unique_ptr<Entity> build(const std::string& id) const { 
+        auto it = _builders.find(id);
+        if (it != _builders.end()) {
+            return it->second();
         }
-        return nullptr; 
+        return nullptr;
     }
 
 private:
@@ -108,7 +108,7 @@ int main()
     factory.register_entity<Person>("Person", "Jean");
     factory.register_entity<Animal>("Dog", "dog");
 
-    Person person {"Jawad"};
+    Person person {"Lionel"};
     factory.register_entity<House>("House", std::ref(person));
 
     std::vector<std::unique_ptr<Entity>> entities;
